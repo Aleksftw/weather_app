@@ -26,3 +26,7 @@ $ {"city":"Sofia","country":"BG","forecasts":[{"date":"Saturday, 3/31/2018","wea
 ## Interacting with the UI 
 Once the local server is running, the UI can be reached in the browser by navigating to `http://localhost:8080/`  
 To search for a city, hover on the looking glass, type your query and hit Enter.  
+
+## Things to note  
+- At this stage while the input does get sanitized to prevent XSS attacks, the app does not employ any validation (front-end or server-side).  
+- As the app uses a free OpenWeatherMap license a **rate limit of 60 calls/minute** is imposed. 

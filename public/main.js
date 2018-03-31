@@ -20,13 +20,20 @@ function visualize(data){
   })
 }
 
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
 $(document).keypress(function(e) {
   var key = e.which || e.keyCode;
     if (key === 13) { 
       $(".weekly").empty();
       $(".forecasts").empty();
       let query = $("#inpt_search").val();
-      $.getJSON( "http://127.0.0.1:8080/api/forecast/" + query)
+      let sanitizedQuery = escapeHtml(query);
+      $.getJSON( "http://127.0.0.1:8080/api/forecast/" + sanitizedQuery)
       .done(function(data){
           console.log(data);
           visualize(data);

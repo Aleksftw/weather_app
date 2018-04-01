@@ -1,6 +1,6 @@
 # Weather App
  Full-stack weather application consisting of:  
-- REST API endpoint which internally retrieves data from a remote service (OpenWeatherMap) and sends it in JSON machine readable format.  
+- REST API endpoint which internally retrieves data from a remote service (OpenWeatherMap) and delivers it in JSON machine readable format.  
 - Front end UI that presents the data in human readable format.  
     
 ## Local Setup 
@@ -13,7 +13,7 @@ $ node index.js
 ```
 
 ## Making calls to the REST endpoint
-Once the local server is running, the endpoint can be tested by making a request to the following URL
+Once the local server is running, the endpoint can be called by making a request to the following URL
 ```sh
 $ curl "localhost:8080/api/forecast/<CITY-OF-YOUR-CHOICE>"
 ```
@@ -29,4 +29,5 @@ To search for a city, hover on the looking glass, type your query and hit Enter.
 
 ## Things to note  
 - At this stage while the input does get sanitized to prevent XSS attacks, the app does not employ any validation (front-end or server-side).  
-- As the app uses a free OpenWeatherMap license a **rate limit of 60 calls/minute** is imposed. 
+- As the app uses a free OpenWeatherMap license a **rate limit of 60 calls/minute** is imposed.  
+- 

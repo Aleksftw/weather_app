@@ -33,7 +33,7 @@ $(document).keypress(function(e) {
       $(".forecasts").empty();
       let query = $("#inpt_search").val();
       let sanitizedQuery = escapeHtml(query);
-      $.getJSON( "http://127.0.0.1:8080/api/forecast/" + sanitizedQuery)
+      $.getJSON( "http://localhost:8080/api/forecast/" + sanitizedQuery)
       .done(function(data){
           console.log(data);
           visualize(data);

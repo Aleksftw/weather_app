@@ -10,9 +10,11 @@ router.get("/forecast/:city", function(req, res, next) {
     axios.get(BASE_URL + req.params.city + API_KEY)
     .then(response => response.data)
     .then(fullData => handleData(fullData))
-    .then(data => res.send(data))
-    .catch(error => console.log(error));
-        
+    .then(data => {
+        res.append('Access-Control-Allow-Origin', '*');
+        res.send(data);
+    }).catch(error => console.log(error));
+
 });
 
 function handleData(data){
@@ -30,14 +32,14 @@ function handleData(data){
         dayObj.minDailyTemp = day.temp.min;
         dayObj.maxDailyTemp = day.temp.max;
         result.forecasts.push(dayObj);
-        
+
         allMinTemps.push(day.temp.min);
         allMaxTemps.push(day.temp.max);
     });
     result.maxPeriodTemp = getHighestTemp(allMaxTemps);
     result.minPeriodTemp = getLowestTemp(allMinTemps);
-    
-    
+
+
     return result;
 }
 
@@ -45,7 +47,7 @@ function convertDate(unixDate){
     let newDate = new Date(unixDate*1000);
     let options = { weekday: "long", year: "numeric", month: "numeric", day: "numeric" };
     return newDate.toLocaleDateString("en-GB", options);
-    
+
 }
 
 function getHighestTemp(temps){
